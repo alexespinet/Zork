@@ -10,16 +10,14 @@ public:
 	Character(const char* name, const char* description, Entity *parent,int life=100);
 	virtual ~Character();
 
-	void RecieveDamage(const int damage);
+	void RecieveDamage(int damage);
 
 	int GetLife()const;
-
 
 
 private:
 
 	int _life = 0;
-	Entity *_inventory;
 
 
 

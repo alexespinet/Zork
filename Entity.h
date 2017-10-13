@@ -11,20 +11,30 @@ public:
 
 	void SetParent(Entity *parent);
 
-	void AddChild(Entity *child);
+	virtual void Look()const;
 
-	bool FindInChildren(Entity *child)const;
+	void LookChilds()const;
 
-	void RemoveChild(Entity *child);
+
+	bool FindInChildren(const Entity *child)const;
+
+	void RemoveChild(Entity * child);
+
+	std::string Name()const;
+
+	
 
 
 private:
-
 	void AddChild(Entity *child, bool checkChildren);
+
+private:
+
 	std::string _name;
 	std::string _description;
 	Entity *_parent;
 	list<Entity*> _childs;
+
 };
 #endif
 

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Entity.h"
-
+#include <iostream>
 
 
 
@@ -22,19 +22,31 @@ void Entity::SetParent(Entity * parent)
 			_parent->_childs.remove(this);
 		}
 		else {
-			parent->AddChild(this,false);
+			parent->AddChild(this, false);
 		}
 	}
 }
 
-void Entity::AddChild(Entity * child)
+void Entity::Look() const
 {
-	AddChild(child, true);
+	cout << _name << endl << _description << endl;
+
 }
 
-bool Entity::FindInChildren(Entity * child) const
+void Entity::LookChilds() const
+{
+	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
+		cout << _name << endl << _description << endl<<"---------------------"<<endl;
+		
+	}
+
+}
+
+
+bool Entity::FindInChildren(const Entity * child) const
 {
 	bool r = false;
+	
 	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
 		if (*it == child) {
 			r = true;
@@ -47,12 +59,17 @@ bool Entity::FindInChildren(Entity * child) const
 
 
 
-void Entity::RemoveChild(Entity * child)
+void Entity::RemoveChild(Entity *  child)
 {
 	bool exists = FindInChildren(child);
 	if (exists) {
 		_childs.remove(child);
 	}
+}
+
+std::string Entity::Name() const
+{
+	return _name;
 }
 
 void Entity::AddChild(Entity * child, bool checkChildren)

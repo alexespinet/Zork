@@ -11,8 +11,17 @@ GameController::~GameController()
 {
 }
 
-void GameController::ManageInput(const char * input)
+bool GameController::ManageInput(const char * input)
 {
+	bool r = false;
+	
+	switch (r) {
+		case
+
+
+	}
+	
+
 }
 
 

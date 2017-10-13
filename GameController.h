@@ -8,6 +8,6 @@ public:
 	~GameController();
 
 
-	void ManageInput(const char *input);
+	bool ManageInput(const char *input);
 };
 #endif
