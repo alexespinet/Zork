@@ -11,31 +11,45 @@ Player::Player(const char *name, const char *description, Entity *parent):Charac
 Player::~Player()
 {
 }
-void Player::EnterRoom(Room * room)
+void Player::EnterRoom(const Direction & direction)
 {
-	if (!room->IsLocked()) {
-		cout<<"You have entered to the room"<<endl;
-		SetParent(room);
-		room->Look();
+	Room *exitRoom = _room->GetExit(direction);
+	if (exitRoom == NULL) {
+		cout << "This direction does not exist"<<endl;
 	}
 	else {
-		cout << "This room is locked"<<endl;
+		if (!exitRoom->IsLocked()) {
+			SetParent(exitRoom);
+			cout << "You have entered to the room" << endl;
+			exitRoom->Look();
+		}
+		else
+			cout << "This room is locked" << endl;
 	}
 }
 
-void Player::TakeItem(Item * item)
+void Player::TakeItem(const char *itemName)
 {
-	cout << "Item taked"<<endl;
-	item->SetParent(_inventory);
-	_room->OnItemIsTaked(item);
-
+	Entity *item = _inventory->FindInChildrenByName(itemName);
+	if (item == NULL)
+		cout << "No existeix tal element";
+	else {
+		cout << "Item taked" << endl;
+		item->SetParent(_inventory);
+		_room->OnItemIsTaked((Item*)item);
+	}
 }
 
-void Player::DropItem(Item * item)
+void Player::DropItem(const char *itemName)
 {
-	cout << "Item dropped"<<endl;
-	item->SetParent(_room);
-	_room->OnItemIsDropped(item);
+	Entity *item = _inventory->FindInChildrenByName(itemName);
+	if (item == NULL)
+		cout << "No existeix tal element";	
+	else {
+		cout << "Item dropped" << endl;
+		item->SetParent(_room);
+		_room->OnItemIsDropped((Item*)item);
+	}
 }
 
 
@@ -44,5 +58,17 @@ void Player::LookInventory() const
 	cout << "Inventory:" << endl;
 	_inventory->LookChilds();
 
+}
+
+void Player::UseItem(const char * itemName)
+{
+	Entity *item=_inventory->FindInChildrenByName(itemName);
+	if (item != NULL) {
+		Item *itemEntity = (Item*)item;
+		itemEntity->Use();
+	}
+	else {
+		cout << "Item not found" << endl;
+	}
 }
 

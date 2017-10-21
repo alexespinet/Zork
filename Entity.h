@@ -18,6 +18,8 @@ public:
 
 	bool FindInChildren(const Entity *child)const;
 
+	Entity * FindInChildrenByName(const char *name)const;
+
 	void RemoveChild(Entity * child);
 
 	std::string Name()const;

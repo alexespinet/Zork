@@ -36,8 +36,8 @@ void Entity::Look() const
 void Entity::LookChilds() const
 {
 	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
-		cout << _name << endl << _description << endl<<"---------------------"<<endl;
-		
+		cout << _name << endl << _description << endl << "---------------------" << endl;
+
 	}
 
 }
@@ -46,10 +46,23 @@ void Entity::LookChilds() const
 bool Entity::FindInChildren(const Entity * child) const
 {
 	bool r = false;
-	
+
 	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
 		if (*it == child) {
 			r = true;
+			break;
+		}
+	}
+	return r;
+
+}
+
+Entity * Entity::FindInChildrenByName(const char * name) const
+{
+	Entity *r = NULL;
+	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
+		if ((*it)->_name.compare(name)==0) {
+			r = *it;
 			break;
 		}
 	}

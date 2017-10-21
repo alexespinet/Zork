@@ -14,6 +14,7 @@ Key::~Key()
 
 bool Key::Use()
 {
+	cout << "Key used"<<endl;
 	bool b = Item::Use();
 	if (b) {		
 		_targetRoom->Unlock();

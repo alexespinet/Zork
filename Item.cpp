@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Item.h"
-
+#include <iostream>
 
 
 
@@ -20,5 +20,6 @@ bool Item::Use()
 		_uses++;
 		r = true;
 	}
+	
 	return r;
 }

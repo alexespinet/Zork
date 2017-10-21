@@ -1,21 +1,24 @@
 #ifndef __PLAYER__
 #define __PLAYER__
 #include "Character.h"
+#include "Definitions.h"
 class Room;
 class Item;
 class Player:public Character
 {
 public:
 	Player(const char *name, const char *description, Entity *parent);
-	~Player();
+	virtual ~Player();
 
-	void EnterRoom(Room *room);
+	void EnterRoom(const Direction & direction);
 
-	void TakeItem(Item *item);
+	void TakeItem(const char*  itemName);
 
-	void DropItem(Item *item);
+	void DropItem(const char *itemName);
 
 	void LookInventory()const;
+
+	void UseItem(const char *itemName);
 
 	
 
