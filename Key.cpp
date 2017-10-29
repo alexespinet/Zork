@@ -14,11 +14,12 @@ Key::~Key()
 
 bool Key::Use()
 {
-	cout << "Key used"<<endl;
 	bool b = Item::Use();
 	if (b) {		
 		_targetRoom->Unlock();
-		cout << "The door of "<<_targetRoom->Name()<<" room will open automatically when you want to enter";
-	}
+		cout << "The door of "<<_targetRoom->Name()<<" room will open automatically when you want to enter"<<endl;
+	}else
+		cout << "Key alredy used" << endl;
+
 	return b;
 }

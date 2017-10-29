@@ -7,7 +7,7 @@ public:
 	Item(const char *name, const char *description, Entity *parent,int maxUses);
 	~Item();
 
-	virtual bool Use()=0;
+	virtual bool Use();
 
 private:
 	int _maxUses=-1;

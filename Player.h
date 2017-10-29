@@ -18,8 +18,12 @@ public:
 
 	void LookInventory()const;
 
+	
+	
+
 	void UseItem(const char *itemName);
 
+	const Room *ActualRoom()const;
 	
 
 private:

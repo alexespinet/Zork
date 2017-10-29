@@ -6,7 +6,9 @@
 
 Entity::Entity(const char * name, const char * description, Entity * parent)
 {
+
 	this->_name = name;
+	_parent = NULL;
 	this->_description = description;
 	SetParent(parent);
 }
@@ -21,9 +23,8 @@ void Entity::SetParent(Entity * parent)
 		if (_parent != NULL) {
 			_parent->_childs.remove(this);
 		}
-		else {
-			parent->AddChild(this, false);
-		}
+		parent->AddChild(this, false);
+
 	}
 }
 
@@ -33,14 +34,16 @@ void Entity::Look() const
 
 }
 
-void Entity::LookChilds() const
+void Entity::LookChilds(const Entity *exception) const
 {
+	cout << "Elements inside the " << _name <<" :"<< endl;
 	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
-		cout << _name << endl << _description << endl << "---------------------" << endl;
-
+		if (*it != exception)
+			cout << (*it)->_name << ": " << (*it)->_description << endl << "---------------------" << endl;
 	}
 
 }
+
 
 
 bool Entity::FindInChildren(const Entity * child) const
@@ -61,7 +64,7 @@ Entity * Entity::FindInChildrenByName(const char * name) const
 {
 	Entity *r = NULL;
 	for (list<Entity*>::const_iterator it = _childs.begin(); it != _childs.end(); ++it) {
-		if ((*it)->_name.compare(name)==0) {
+		if ((*it)->_name.compare(name) == 0) {
 			r = *it;
 			break;
 		}
@@ -83,6 +86,11 @@ void Entity::RemoveChild(Entity *  child)
 std::string Entity::Name() const
 {
 	return _name;
+}
+
+const Entity * Entity::Parent() const
+{
+	return _parent;
 }
 
 void Entity::AddChild(Entity * child, bool checkChildren)

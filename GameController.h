@@ -14,6 +14,15 @@ public:
 	bool ManageInput(const std::vector<std::string>& inputs);
 private:
 	Player *_player;
+
+	Room *_exitRoom;
+
+
+	std::vector<Room*> _rooms;
+	std::vector<Item*> _items;
+	void GenerateWorld();
+
+	
 	
 
 };

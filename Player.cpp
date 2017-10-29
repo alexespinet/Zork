@@ -5,6 +5,8 @@
 #include <iostream>
 Player::Player(const char *name, const char *description, Entity *parent):Character(name,description,parent)
 {
+	_room = (Room*)parent;
+	_inventory = new Entity("Inventory", "Inventory of the player", this);
 }
 
 
@@ -19,6 +21,7 @@ void Player::EnterRoom(const Direction & direction)
 	}
 	else {
 		if (!exitRoom->IsLocked()) {
+			_room = exitRoom;
 			SetParent(exitRoom);
 			cout << "You have entered to the room" << endl;
 			exitRoom->Look();
@@ -30,9 +33,9 @@ void Player::EnterRoom(const Direction & direction)
 
 void Player::TakeItem(const char *itemName)
 {
-	Entity *item = _inventory->FindInChildrenByName(itemName);
+	Entity *item =_room->FindInChildrenByName(itemName);
 	if (item == NULL)
-		cout << "No existeix tal element";
+		cout << "You can not take a non existent item"<<endl;
 	else {
 		cout << "Item taked" << endl;
 		item->SetParent(_inventory);
@@ -44,7 +47,7 @@ void Player::DropItem(const char *itemName)
 {
 	Entity *item = _inventory->FindInChildrenByName(itemName);
 	if (item == NULL)
-		cout << "No existeix tal element";	
+		cout << "You can not drop a non existent item"<<endl;	
 	else {
 		cout << "Item dropped" << endl;
 		item->SetParent(_room);
@@ -55,10 +58,11 @@ void Player::DropItem(const char *itemName)
 
 void Player::LookInventory() const
 {
-	cout << "Inventory:" << endl;
 	_inventory->LookChilds();
 
 }
+
+
 
 void Player::UseItem(const char * itemName)
 {
@@ -70,5 +74,10 @@ void Player::UseItem(const char * itemName)
 	else {
 		cout << "Item not found" << endl;
 	}
+}
+
+const Room *  Player::ActualRoom() const
+{
+	return _room;
 }
 

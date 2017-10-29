@@ -13,7 +13,7 @@ public:
 
 	virtual void Look()const;
 
-	void LookChilds()const;
+	void LookChilds(const Entity * exception=NULL)const;
 
 
 	bool FindInChildren(const Entity *child)const;
@@ -25,7 +25,7 @@ public:
 	std::string Name()const;
 
 	
-
+	const Entity *Parent()const;
 
 private:
 	void AddChild(Entity *child, bool checkChildren);

@@ -9,6 +9,8 @@ Room::Room(const char *name, const char *description, Entity *parent, bool isLoc
 	_rightExit = rightExit;
 	_downExit = downExit;
 	_upExit = upExit;
+
+
 }
 
 
@@ -45,7 +47,7 @@ Room * Room::GetExit(const Direction & direction) const
 	Room *r = NULL;
 	switch (direction) {
 	case Direction::UP:
-		r = _upExit;
+		r= _upExit;
 		break;
 	case Direction::DOWN:
 		r = _downExit;
@@ -63,4 +65,22 @@ Room * Room::GetExit(const Direction & direction) const
 void Room::OnItemIsDropped(Item * item)
 {
 	_items.push_back(item);
+}
+
+void Room::SetExit(const Direction & direction, Room * exit)
+{
+	switch (direction) {
+	case Direction::UP:
+		_upExit = exit;
+		break;
+	case Direction::DOWN:
+		_downExit = exit;
+		break;
+	case Direction::LEFT:
+		_leftExit = exit;
+		break;
+	case Direction::RIGHT:
+		_rightExit = exit;
+		break;
+	}
 }

@@ -22,6 +22,8 @@ public:
 
 	void OnItemIsDropped(Item *item);
 
+	void SetExit(const Direction & direction, Room * exit);
+
 private:
 	bool _isLocked = false;
 	list <Item*>_items;
