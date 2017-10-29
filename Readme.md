@@ -7,7 +7,6 @@ Now you walk the streets looking for food and shelter.
 Survive as long as you can.
 
 ## Game actions
-
 -Look: Show all items in the room
 
 -Take -item-: Takes an item
