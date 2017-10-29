@@ -2,9 +2,7 @@
 
 ## Context
 
-You where kicked out. Left by society. 
-Now you walk the streets looking for food and shelter.
-Survive as long as you can.
+Just the simpliest zork ever :)
 
 ## Game actions
 -Look: Show all items in the room
