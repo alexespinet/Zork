@@ -20,4 +20,4 @@ Just the simpliest zork ever :)
 
 ## Executable
 
-- https://drive.google.com/open?id=0B-wtlvGRc9phZDY5RURRLTZ3bFk
+- https://drive.google.com/open?id=0B-wtlvGRc9phY0U4SzBrOUpCSFU
