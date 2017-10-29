@@ -5,6 +5,7 @@
 Just the simpliest zork ever :)
 
 ## Game actions
+
 -Look: Show all items in the room
 
 -Take -item-: Takes an item
